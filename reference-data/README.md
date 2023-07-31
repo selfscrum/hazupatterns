@@ -1,3 +1,17 @@
+# Reference Data Management
+
+## Artifacts in Hazu
+* Reference Data Entity
+* Reference Point
+
+## Artifacts in Make
+### Flows
+* Store Reference Data in a Database - synchronize a Hazu Reference Data Entity to Make
+
+### Data Stores
+* Reference Data Dictionary - list of all reference data entities
+* Reference Data Store - all reference data is stored here
+
 ## Use Case "Store Reference Data in a Database"
 
 Hazu doesn't provide a feature to maintain reusable data entities. Thus we have to implement this as an application extension.
