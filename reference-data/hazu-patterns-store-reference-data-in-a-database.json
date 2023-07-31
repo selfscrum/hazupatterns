@@ -1,0 +1,1332 @@
+{
+    "name": "hazu-patterns-store-reference-data-in-a-database",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 1005826,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 450
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "StoreReferenceDataWebhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "hazuid",
+                        "type": "text"
+                    },
+                    {
+                        "name": "auth",
+                        "type": "text"
+                    },
+                    {
+                        "name": "hazuRedirectUrl",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 34,
+            "module": "app#hazu-06kt1b:readElement",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "id": "{{1.hazuid}}",
+                "path": "https://us-central1-hazu-ch.cloudfunctions.net/read",
+                "token": "{{1.auth}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 450,
+                    "name": "ReferenceData"
+                },
+                "restore": {
+                    "expect": {
+                        "path": {
+                            "mode": "chose",
+                            "label": "Hazu Switzerland"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "path",
+                        "type": "select",
+                        "label": "Environment",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "https://us-central1-hazu-ch.cloudfunctions.net/read",
+                                "https://europe-west6-hazu-ch-dev.cloudfunctions.net/read",
+                                "https://us-central1-blazing-torch-5326.cloudfunctions.net/read"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Hazu / Item ID",
+                        "required": true
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "API Key or Access Token (Invite Code)",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 14,
+            "module": "app#hazu-06kt1b:readChildren",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "path": "https://us-central1-hazu-ch.cloudfunctions.net/readChildren",
+                "token": "{{1.auth}}",
+                "parentId": "{{1.hazuid}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 450,
+                    "name": "ReferenceData"
+                },
+                "restore": {
+                    "expect": {
+                        "path": {
+                            "mode": "chose",
+                            "label": "Hazu Switzerland"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "path",
+                        "type": "select",
+                        "label": "Environment",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "https://us-central1-hazu-ch.cloudfunctions.net/readChildren",
+                                "https://us-central1-hazu-ch-dev.cloudfunctions.net/readChildren",
+                                "https://us-central1-blazing-torch-5326.cloudfunctions.net/readChildren"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parentId",
+                        "type": "text",
+                        "label": "Hazu ID",
+                        "required": true
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "API Key or Access Token (Invite Code)",
+                        "required": true
+                    },
+                    {
+                        "name": "filter",
+                        "type": "text",
+                        "label": "Filter string"
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description"
+                    },
+                    {
+                        "name": "fulltext",
+                        "type": "text",
+                        "label": "Fulltext"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 18,
+            "module": "datastore:SearchRecord",
+            "version": 1,
+            "parameters": {
+                "limit": null,
+                "datastore": 37697
+            },
+            "mapper": {
+                "sort": [],
+                "filter": [
+                    [
+                        {
+                            "a": "ReferenceDataHazuId",
+                            "b": "{{34.snapshot.key}}",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 450,
+                    "name": "ReferenceData"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "ReferenceData"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module returns no results"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://datastore/1.9.16/RpcGetUDTKeys",
+                        "required": true
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "select",
+                                "label": "Key",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "order",
+                                "type": "select",
+                                "label": "Order",
+                                "options": [
+                                    {
+                                        "label": "Ascending",
+                                        "value": 1
+                                    },
+                                    {
+                                        "label": "Descending",
+                                        "value": -1
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "name": "ReferenceDataHazuId",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": true,
+                                "multiline": false
+                            },
+                            {
+                                "name": "Order",
+                                "type": "number",
+                                "label": null,
+                                "default": null,
+                                "required": true
+                            },
+                            {
+                                "name": "Value",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": true,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 25,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 450,
+                    "name": "Old Data?"
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 23,
+                            "module": "builtin:BasicAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 18
+                            },
+                            "filter": {
+                                "name": "Yes",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{18.data}}",
+                                            "o": "exist"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "key": "{{18.key}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 150,
+                                    "name": "AggregateSearchByParentId"
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Data store - Search records [18]"
+                                        },
+                                        "target": {
+                                            "label": "Custom"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "id": 19,
+                            "module": "builtin:BasicFeeder",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "array": "{{23.array}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 150,
+                                    "name": "Iterate Old Records"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "array": {
+                                            "mode": "edit"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "mode": "edit",
+                                        "name": "array",
+                                        "spec": [],
+                                        "type": "array",
+                                        "label": "Array"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 20,
+                            "module": "datastore:DeleteRecord",
+                            "version": 1,
+                            "parameters": {
+                                "datastore": 37697
+                            },
+                            "mapper": {
+                                "key": "{{19.key}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2100,
+                                    "y": 150,
+                                    "name": "ReferenceData"
+                                },
+                                "restore": {
+                                    "parameters": {
+                                        "datastore": {
+                                            "label": "ReferenceData"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "datastore",
+                                        "type": "datastore",
+                                        "label": "Data store",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "key",
+                                        "type": "text",
+                                        "label": "Key",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 21,
+                            "module": "builtin:BasicAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 19
+                            },
+                            "mapper": {},
+                            "metadata": {
+                                "designer": {
+                                    "x": 2400,
+                                    "y": 150
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Iterator [19]"
+                                        },
+                                        "target": {
+                                            "label": "Custom"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "id": 38,
+                            "module": "builtin:BasicRouter",
+                            "version": 1,
+                            "mapper": null,
+                            "metadata": {
+                                "designer": {
+                                    "x": 2700,
+                                    "y": 150,
+                                    "name": "New Data?"
+                                }
+                            },
+                            "routes": [
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 36,
+                                            "module": "datastore:DeleteRecord",
+                                            "version": 1,
+                                            "parameters": {
+                                                "datastore": 37696
+                                            },
+                                            "filter": {
+                                                "name": "No",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{14.data}}",
+                                                            "b": "0",
+                                                            "o": "array:equal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "key": "{{34.snapshot.key}}"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3000,
+                                                    "y": 0,
+                                                    "name": "ReferenceDataDictionory"
+                                                },
+                                                "restore": {
+                                                    "parameters": {
+                                                        "datastore": {
+                                                            "label": "ReferenceDataDirectory"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "datastore",
+                                                        "type": "datastore",
+                                                        "label": "Data store",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "key",
+                                                        "type": "text",
+                                                        "label": "Key",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 39,
+                                            "module": "gateway:WebhookRespond",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "mapper": {
+                                                "body": "OK",
+                                                "status": "301",
+                                                "headers": [
+                                                    {
+                                                        "key": "Location",
+                                                        "value": "{{1.hazuRedirectUrl}}"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3300,
+                                                    "y": 0
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "headers": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "expect": [
+                                                    {
+                                                        "name": "status",
+                                                        "type": "uinteger",
+                                                        "label": "Status",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "min": 100
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "body",
+                                                        "type": "any",
+                                                        "label": "Body"
+                                                    },
+                                                    {
+                                                        "name": "headers",
+                                                        "spec": [
+                                                            {
+                                                                "name": "key",
+                                                                "type": "text",
+                                                                "label": "Key",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 256
+                                                                }
+                                                            },
+                                                            {
+                                                                "name": "value",
+                                                                "type": "text",
+                                                                "label": "Value",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 4096
+                                                                }
+                                                            }
+                                                        ],
+                                                        "type": "array",
+                                                        "label": "Custom headers",
+                                                        "validate": {
+                                                            "maxItems": 16
+                                                        }
+                                                    }
+                                                ],
+                                                "advanced": true
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 41,
+                                            "module": "datastore:AddRecord",
+                                            "version": 1,
+                                            "parameters": {
+                                                "datastore": 37696
+                                            },
+                                            "filter": {
+                                                "name": "Yes",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{14.data}}",
+                                                            "b": "0",
+                                                            "o": "array:notequal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "key": "{{34.snapshot.key}}",
+                                                "data": {
+                                                    "ReferenceDataName": "{{stripHTML(34.snapshot.title)}}"
+                                                },
+                                                "overwrite": true
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3000,
+                                                    "y": 300,
+                                                    "name": "ReferenceDataDictionary"
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "overwrite": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "datastore": {
+                                                            "label": "ReferenceDataDirectory"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "datastore",
+                                                        "type": "datastore",
+                                                        "label": "Data store",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "key",
+                                                        "type": "text",
+                                                        "label": "Key"
+                                                    },
+                                                    {
+                                                        "name": "overwrite",
+                                                        "type": "boolean",
+                                                        "label": "Overwrite an existing record",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "data",
+                                                        "spec": [
+                                                            {
+                                                                "name": "ReferenceDataName",
+                                                                "type": "text",
+                                                                "label": null
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Record"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 30,
+                                            "module": "builtin:BasicFeeder",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "mapper": {
+                                                "array": "{{14.data}}"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3300,
+                                                    "y": 300,
+                                                    "name": "Iterate New Records"
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "array": {
+                                                            "mode": "edit"
+                                                        }
+                                                    }
+                                                },
+                                                "expect": [
+                                                    {
+                                                        "mode": "edit",
+                                                        "name": "array",
+                                                        "spec": [],
+                                                        "type": "array",
+                                                        "label": "Array"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 31,
+                                            "module": "datastore:AddRecord",
+                                            "version": 1,
+                                            "parameters": {
+                                                "datastore": 37697
+                                            },
+                                            "mapper": {
+                                                "key": "{{30.snapshot.key}}",
+                                                "data": {
+                                                    "Order": "{{30.snapshot.order}}",
+                                                    "Value": "{{30.snapshot.title}}",
+                                                    "ReferenceDataHazuId": "{{30.snapshot.parentId}}"
+                                                },
+                                                "overwrite": false
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3600,
+                                                    "y": 300,
+                                                    "name": "ReferenceData"
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "overwrite": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "datastore": {
+                                                            "label": "ReferenceData"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "datastore",
+                                                        "type": "datastore",
+                                                        "label": "Data store",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "key",
+                                                        "type": "text",
+                                                        "label": "Key"
+                                                    },
+                                                    {
+                                                        "name": "overwrite",
+                                                        "type": "boolean",
+                                                        "label": "Overwrite an existing record",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "data",
+                                                        "spec": [
+                                                            {
+                                                                "name": "ReferenceDataHazuId",
+                                                                "type": "text",
+                                                                "label": null
+                                                            },
+                                                            {
+                                                                "name": "Order",
+                                                                "type": "number",
+                                                                "label": null
+                                                            },
+                                                            {
+                                                                "name": "Value",
+                                                                "type": "text",
+                                                                "label": null
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Record"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 32,
+                                            "module": "builtin:BasicAggregator",
+                                            "version": 1,
+                                            "parameters": {
+                                                "feeder": 30
+                                            },
+                                            "mapper": {},
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 3900,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "extra": {
+                                                        "feeder": {
+                                                            "label": "Iterator [26]"
+                                                        },
+                                                        "target": {
+                                                            "label": "Custom"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": 33,
+                                            "module": "gateway:WebhookRespond",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "mapper": {
+                                                "body": "OK",
+                                                "status": "301",
+                                                "headers": [
+                                                    {
+                                                        "key": "Location",
+                                                        "value": "{{1.hazuRedirectUrl}}"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4200,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "headers": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "expect": [
+                                                    {
+                                                        "name": "status",
+                                                        "type": "uinteger",
+                                                        "label": "Status",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "min": 100
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "body",
+                                                        "type": "any",
+                                                        "label": "Body"
+                                                    },
+                                                    {
+                                                        "name": "headers",
+                                                        "spec": [
+                                                            {
+                                                                "name": "key",
+                                                                "type": "text",
+                                                                "label": "Key",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 256
+                                                                }
+                                                            },
+                                                            {
+                                                                "name": "value",
+                                                                "type": "text",
+                                                                "label": "Value",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 4096
+                                                                }
+                                                            }
+                                                        ],
+                                                        "type": "array",
+                                                        "label": "Custom headers",
+                                                        "validate": {
+                                                            "maxItems": 16
+                                                        }
+                                                    }
+                                                ],
+                                                "advanced": true
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 42,
+                            "module": "datastore:AddRecord",
+                            "version": 1,
+                            "parameters": {
+                                "datastore": 37696
+                            },
+                            "filter": {
+                                "name": "No, but new Data",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{18.data}}",
+                                            "o": "notexist"
+                                        },
+                                        {
+                                            "a": "{{14.data}}",
+                                            "b": "0",
+                                            "o": "array:greater"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "key": "{{34.snapshot.key}}",
+                                "data": {
+                                    "ReferenceDataName": "{{stripHTML(34.snapshot.title)}}"
+                                },
+                                "overwrite": true
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 600,
+                                    "name": "ReferenceDataDictionary"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "overwrite": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "datastore": {
+                                            "label": "ReferenceDataDirectory"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "datastore",
+                                        "type": "datastore",
+                                        "label": "Data store",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "key",
+                                        "type": "text",
+                                        "label": "Key"
+                                    },
+                                    {
+                                        "name": "overwrite",
+                                        "type": "boolean",
+                                        "label": "Overwrite an existing record",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "data",
+                                        "spec": [
+                                            {
+                                                "name": "ReferenceDataName",
+                                                "type": "text",
+                                                "label": null
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 26,
+                            "module": "builtin:BasicFeeder",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "array": "{{14.data}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 600,
+                                    "name": "Iterate New Records"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "array": {
+                                            "mode": "edit"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "mode": "edit",
+                                        "name": "array",
+                                        "spec": [],
+                                        "type": "array",
+                                        "label": "Array"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 17,
+                            "module": "datastore:AddRecord",
+                            "version": 1,
+                            "parameters": {
+                                "datastore": 37697
+                            },
+                            "mapper": {
+                                "key": "{{26.snapshot.key}}",
+                                "data": {
+                                    "Order": "{{26.snapshot.order}}",
+                                    "Value": "{{26.snapshot.title}}",
+                                    "ReferenceDataHazuId": "{{26.snapshot.parentId}}"
+                                },
+                                "overwrite": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2100,
+                                    "y": 600,
+                                    "name": "ReferenceData"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "overwrite": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "datastore": {
+                                            "label": "ReferenceData"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "datastore",
+                                        "type": "datastore",
+                                        "label": "Data store",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "key",
+                                        "type": "text",
+                                        "label": "Key"
+                                    },
+                                    {
+                                        "name": "overwrite",
+                                        "type": "boolean",
+                                        "label": "Overwrite an existing record",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "data",
+                                        "spec": [
+                                            {
+                                                "name": "ReferenceDataHazuId",
+                                                "type": "text",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "Order",
+                                                "type": "number",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "Value",
+                                                "type": "text",
+                                                "label": null
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "module": "builtin:BasicAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 26
+                            },
+                            "mapper": {},
+                            "metadata": {
+                                "designer": {
+                                    "x": 2400,
+                                    "y": 600
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Iterator [26]"
+                                        },
+                                        "target": {
+                                            "label": "Custom"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "body": "OK",
+                                "status": "301",
+                                "headers": [
+                                    {
+                                        "key": "Location",
+                                        "value": "{{1.hazuRedirectUrl}}"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2700,
+                                    "y": 600
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 43,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "No, and new Data neither",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{18.data}}",
+                                            "o": "notexist"
+                                        },
+                                        {
+                                            "a": "{{14.data}}",
+                                            "b": "0",
+                                            "o": "array:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "body": "OK",
+                                "status": "301",
+                                "headers": [
+                                    {
+                                        "key": "Location",
+                                        "value": "{{1.hazuRedirectUrl}}"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 900
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com"
+    }
+}
