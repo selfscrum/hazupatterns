@@ -1,0 +1,368 @@
+{
+    "name": "hazu-patterns-set-fa-icon",
+    "flow": [
+        {
+            "id": 64,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 1013882,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "set-fa-icon"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "hazuid",
+                        "type": "text"
+                    },
+                    {
+                        "name": "icon",
+                        "type": "text"
+                    },
+                    {
+                        "name": "auth",
+                        "type": "text"
+                    },
+                    {
+                        "name": "parent-auth",
+                        "type": "text"
+                    },
+                    {
+                        "name": "hazuRedirectUrl",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 44,
+            "module": "app#hazu-06kt1b:updateElement",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "id": "{{64.hazuid}}",
+                "icon": "{{64.icon}}",
+                "main": {},
+                "path": "https://us-central1-hazu-ch.cloudfunctions.net/update",
+                "token": "{{64.`parent-auth`}}",
+                "interaction": {
+                    "authorGeocodeLocation": {}
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "path": {
+                            "mode": "chose",
+                            "label": "Hazu Switzerland"
+                        },
+                        "privacy": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "autoDate": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "sortOrder": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "timelinePosition": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "path",
+                        "type": "select",
+                        "label": "Environment",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "https://us-central1-hazu-ch.cloudfunctions.net/update",
+                                "https://us-central1-hazu-ch-dev.cloudfunctions.net/update",
+                                "https://us-central1-blazing-torch-5326.cloudfunctions.net/update"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "API Key or Parent Access Token (Invite Code)",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Updated element ID",
+                        "required": true
+                    },
+                    {
+                        "name": "privacy",
+                        "type": "select",
+                        "label": "Privacy",
+                        "validate": {
+                            "enum": [
+                                "public",
+                                "private",
+                                "unlisted"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description"
+                    },
+                    {
+                        "name": "color",
+                        "type": "color",
+                        "label": "Color"
+                    },
+                    {
+                        "name": "icon",
+                        "type": "text",
+                        "label": "Icon"
+                    },
+                    {
+                        "name": "authorId",
+                        "type": "text",
+                        "label": "Author ID"
+                    },
+                    {
+                        "name": "displayName",
+                        "type": "text",
+                        "label": "User's Display Name"
+                    },
+                    {
+                        "name": "startDate",
+                        "type": "text",
+                        "label": "Start Date"
+                    },
+                    {
+                        "name": "endDate",
+                        "type": "text",
+                        "label": "End Date"
+                    },
+                    {
+                        "name": "interaction",
+                        "spec": [
+                            {
+                                "name": "authorGeocodeLocation",
+                                "spec": [
+                                    {
+                                        "name": "lat",
+                                        "type": "number"
+                                    },
+                                    {
+                                        "name": "lng",
+                                        "type": "number"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Location Geocode"
+                            },
+                            {
+                                "name": "authorLocation",
+                                "type": "text",
+                                "label": "Location"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Location"
+                    },
+                    {
+                        "name": "longdescription",
+                        "type": "text",
+                        "label": "Long Description"
+                    },
+                    {
+                        "name": "main",
+                        "spec": [
+                            {
+                                "name": "priority",
+                                "type": "integer",
+                                "label": "Icon Size",
+                                "validate": {
+                                    "max": 10,
+                                    "min": 0
+                                }
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Hazu/Item Appearance"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "type": "select",
+                        "label": "Timeline Sorting",
+                        "validate": {
+                            "enum": [
+                                "0",
+                                "1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "timelinePosition",
+                        "type": "select",
+                        "label": "Timeline Position",
+                        "validate": {
+                            "enum": [
+                                "0",
+                                "1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "autoDate",
+                        "type": "select",
+                        "label": "Auto-Date on Creation",
+                        "validate": {
+                            "enum": [
+                                false,
+                                true
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 65,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "body": "",
+                "status": "301",
+                "headers": [
+                    {
+                        "key": "Location",
+                        "value": "{{64.hazuRedirectUrl}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "required": true,
+                        "validate": {
+                            "min": 100
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true,
+                                "validate": {
+                                    "max": 256
+                                }
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Custom headers",
+                        "validate": {
+                            "maxItems": 16
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com"
+    }
+}
