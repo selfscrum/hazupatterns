@@ -1,0 +1,109 @@
+<mxfile host="65bd71144e">
+    <diagram id="cYjrmRoTakhk5qAQ9pah" name="Inquiry">
+        <mxGraphModel dx="761" dy="839" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-25" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fillColor=#f5f5f5;fontFamily=Comic Sans MS;fontColor=#333333;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="253" y="430" width="130" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-24" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fillColor=#f5f5f5;fontFamily=Comic Sans MS;fontColor=#333333;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="250.5" y="360" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-23" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fillColor=#f5f5f5;fontFamily=Comic Sans MS;fontColor=#333333;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="160" width="130" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-1" value="CRM System for communication and progress management" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;shadow=1;fillColor=#9a4c85;fontColor=#FFFFFF;fontStyle=1;strokeColor=none;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="150" width="140" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-2" value="Collaboration Platform for Personal Info Hub" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;shadow=1;fontColor=#FFFFFF;fillColor=#2185D0;strokeColor=none;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="150" width="280" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-3" value="Individual content and links to packaged Content depending on request and subsequent activities." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;comic=0;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="260" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-4" value="Application form" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="540" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-5" value="&quot;Check List&quot; to guide the customer, but controlled by school staff &lt;br&gt;(mostly manually in first step)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="330" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-6" value="Contact Database including Privacy Management" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-7" value="Lead Funnel, Progress Reporting" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="330" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-8" value="Staff Notifications" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="400" width="120" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-9" value="Upload possibilities" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="400" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-10" value="Link to video conference facility" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="467.34" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-11" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="270" y="210" as="sourcePoint"/>
+                        <mxPoint x="370" y="210" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-12" value="Create Info Hub&lt;br&gt;(On Intake Request )" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="253" y="170" width="125" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-13" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="375.65999999999997" as="sourcePoint"/>
+                        <mxPoint x="270" y="375.65999999999997" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-14" value="Check List Changed Event" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="382" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-15" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="448.0000000000001" as="sourcePoint"/>
+                        <mxPoint x="270" y="448.0000000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-16" value="Upload Event" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="455.34000000000003" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-17" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="500" as="sourcePoint"/>
+                        <mxPoint x="270" y="500" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-18" value="Callback Request" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="507.34000000000003" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-19" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="556.33" as="sourcePoint"/>
+                        <mxPoint x="270" y="556.33" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-20" value="Application Requested Event" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="563.6700000000001" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="C-yfv8gAe12NbiLu8z_e-22" value="Delete Info Hub&lt;br&gt;(On Cancellation)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="220" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fillColor=#f5f5f5;fontFamily=Comic Sans MS;fontColor=#333333;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="250.5" y="310" width="130" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="endArrow=classic;html=1;strokeColor=#A35000;strokeWidth=3;fontFamily=Comic Sans MS;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="270.5" y="322" as="sourcePoint"/>
+                        <mxPoint x="370.5" y="322" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="CheckItem Change (for automation )" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Comic Sans MS;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="330" width="130" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
